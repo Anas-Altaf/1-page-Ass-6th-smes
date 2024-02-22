@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <title>My Portfolio</title>
+</head>
+
+<body>
+    <!-- Uncomment the navbar if you needed  -->
+    <!-- <nav class="navbar">
+        <ul>
+            <li><a>Home</a></li>
+            <li><a>Services</a></li>
+            <li><a>Project</a></li>
+            <li><a>Contacts</a></li>
+        </ul>
+    </nav> -->
+    <div class="main-wrapper">
+        <div class="container">
+            <span class="subheading">Hi there! <div class="msg-arrow"></div></span>
+            <span class="h1">I am Anas Altaf</span>
+            <span class="h1 cursor" id="type-effect">A Web Designer</span>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, vero ex. Perspiciatis dignissimos vitae
+                delectus dolorem consequatur nisi, dolore at!</p>
+            <div class="button-div">
+                <button class="btn1 btn">HIRE ME <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn2 btn">VIEW PORTFOLIO <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="social-area">
+                <ul class="social-links">
+                    <li><a href="">Facebook</a></li>
+                    <li><a href="">Twitter</a></li>
+                    <li><a href="">LinkedIn</a></li>
+                    <li><a href="" id="dev"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var sentences = [
+      "I'm a Web Developer.",
+      "I Love to Code.",
+      "I Like to Design."
+    ];
+    var currentSentence = 0;
+var currentChar = 0;
+var isDeleting = false;
+var speed = 150;
+
+function typeWriter() {
+  var text = sentences[currentSentence];
+  if (isDeleting) {
+    document.getElementById("type-effect").textContent = text.substring(0, currentChar - 1);
+    currentChar--;
+  } else {
+    document.getElementById("type-effect").textContent = text.substring(0, currentChar + 1);
+    currentChar++;
+  }
+
+  if (!isDeleting && currentChar === text.length + 1) {
+    isDeleting = true;
+    document.getElementById("type-effect").style.borderRight = 'none'; // Remove cursor
+    setTimeout(typeWriter, 500);
+  } else if (isDeleting && currentChar === 0) {
+    isDeleting = false;
+    currentSentence = (currentSentence + 1) % sentences.length;
+    document.getElementById("type-effect").style.borderRight = '2px solid white'; // Add cursor
+    setTimeout(typeWriter, 500);
+  } else {
+    setTimeout(typeWriter, speed);
+  }
+}
+let name = 'Anas Altaf';
+window.onload = ()=>{
+    typeWriter();
+    let dev = document.getElementById('dev').innerText = `Designed By : ${name}🤦‍♂️`;
+}
+    </script>
+</html>
